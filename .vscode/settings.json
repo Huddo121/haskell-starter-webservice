@@ -1,0 +1,11 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+
+  "files.trimFinalNewlines": false,
+  "files.insertFinalNewline": true,
+
+  "haskell.indentationRules.enabled": true,
+  "languageServerHaskell.useCustomHieWrapper": true,
+  "languageServerHaskell.useCustomHieWrapperPath": "${workspaceRoot}/bin/hie-wrapper.sh"
+}
