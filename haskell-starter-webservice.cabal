@@ -48,7 +48,8 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  -- exposed-modules:
+  exposed-modules:     Fruit.API
+                      ,Greeting.API
 
   -- Modules included in this library but not exported.
   -- other-modules:
@@ -58,15 +59,25 @@ library
 
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.11 && <4.12
+                      ,aeson
+                      ,servant-server
 
   -- Directories containing source files.
-  hs-source-dirs:      src
+  hs-source-dirs:      lib
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
 
+  -- A bunch of GHC extensions that will be available by default
+  default-extensions:  DataKinds
+                      ,DeriveGeneric
+                      ,GADTs
+                      ,OverloadedStrings
+                      ,TypeFamilies
+                      ,TypeOperators
 
-executable haskell-starter-webservice
+
+executable server
   -- .hs or .lhs file containing the Main module.
   main-is:             Main.hs
 
@@ -78,9 +89,14 @@ executable haskell-starter-webservice
 
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.11 && <4.12
+                      -- You will need to replace the following line with the same
+                      -- name you set for the package (on line 5)
+                      ,haskell-starter-webservice
+                      ,servant-server
+                      ,warp
 
   -- Directories containing source files.
-  hs-source-dirs:      src
+  hs-source-dirs:      server
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
