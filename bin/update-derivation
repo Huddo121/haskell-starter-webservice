@@ -1,0 +1,3 @@
+#! /bin/sh
+set -eux
+nix-shell --command "cabal2nix ./. > PROJECT_NAME.nix"
