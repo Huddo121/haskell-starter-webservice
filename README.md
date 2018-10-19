@@ -1,6 +1,7 @@
 # Haskell-Starter-WebService
 
-A starter for building out haskell web services. The goal of this starter is to give you something to build on top of, with some of the fiddly bits taken care of for you, while providing a featureful and robust build and dev loop.
+A starter for building out haskell web services. The goal of this starter is to give you something to build on top of,
+with some of the fiddly bits taken care of for you, while providing a featureful and robust build and dev loop.
 
 ## Using This Starter
 
@@ -21,6 +22,16 @@ A starter for building out haskell web services. The goal of this starter is to 
 This project uses [Nix](https://nixos.org/nix/) for its builds.
 
 `nix build`
+
+## Running the Server
+
+Once you have built the server, you can run `./result/bin/my-awesome-ws`.
+
+## Documentation Server
+
+This project is able to serve swagger docs that are derived from the types of your routes and APIs. To start serving the
+swagger-ui, run `nix-build`, then `./result/bin/docserver`. Swagger-ui will start running on
+http://localhost:8443/swagger-ui.
 
 ## Documentation
 
