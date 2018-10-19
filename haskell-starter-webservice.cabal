@@ -48,7 +48,8 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Fruit.API
+  exposed-modules:     API
+                      ,Fruit.API
                       ,Greeting.API
 
   -- Modules included in this library but not exported.
@@ -101,3 +102,19 @@ executable server
   -- Base language which the package is written in.
   default-language:    Haskell2010
 
+executable docserver
+  main-is:             Main.hs
+  hs-source-dirs:      docserver
+  default-language:    Haskell2010
+
+  build-depends:       base >=4.11 && <4.12
+                      -- You will need to replace the following line with the same
+                      -- name you set for the package (on line 5)
+                      ,haskell-starter-webservice
+                      ,lens
+                      ,servant-docs
+                      ,servant-server
+                      ,servant-swagger
+                      ,servant-swagger-ui
+                      ,swagger2
+                      ,warp
