@@ -8,7 +8,6 @@ import API  -- Root level API that re-exports its child APIs
 import Network.Wai.Handler.Warp
 import Servant
 
-
 main :: IO ()
 main = do
   putStrLn "Starting the haskell-starter-webservice!"
@@ -33,4 +32,3 @@ handlers = fruitHandler :<|> greetingHandler
 
 application :: Application
 application = serve api handlers
-

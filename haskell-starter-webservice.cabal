@@ -118,4 +118,3 @@ executable docserver
                       ,servant-swagger-ui
                       ,swagger2
                       ,warp
-
