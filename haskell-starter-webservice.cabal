@@ -77,6 +77,32 @@ library
                       ,TypeFamilies
                       ,TypeOperators
 
+  -- Normally these would actually be in an external repository, or provided
+  -- by another project
+library clients
+  exposed-modules:     GitHub.API
+                      ,GitHub.API.Clients
+
+  hs-source-dirs:      clients
+  default-language:    Haskell2010
+
+  build-depends:       base >=4.11 && <4.12
+                      ,aeson
+                      ,aeson-casing
+                      ,http-client
+                      ,http-client-tls
+                      ,servant
+                      ,servant-client
+                      ,servant-server
+                      ,text
+
+  default-extensions:  DataKinds
+                      ,DeriveGeneric
+                      ,GADTs
+                      ,OverloadedStrings
+                      ,TypeFamilies
+                      ,TypeOperators
+
 
 executable server
   -- .hs or .lhs file containing the Main module.
@@ -90,6 +116,7 @@ executable server
 
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.11 && <4.12
+                      ,clients
                       -- You will need to replace the following line with the same
                       -- name you set for the package (on line 5)
                       ,haskell-starter-webservice
