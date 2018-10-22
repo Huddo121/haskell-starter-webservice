@@ -7,5 +7,5 @@
 
   "haskell.indentationRules.enabled": true,
   "languageServerHaskell.useCustomHieWrapper": true,
-  "languageServerHaskell.useCustomHieWrapperPath": "${workspaceRoot}/bin/hie-wrapper.sh"
+  "languageServerHaskell.useCustomHieWrapperPath": "${workspaceRoot}/bin/hie-wrapper"
 }
