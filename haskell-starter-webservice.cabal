@@ -91,6 +91,7 @@ library clients
                       ,aeson-casing
                       ,http-client
                       ,http-client-tls
+                      ,http-types
                       ,servant
                       ,servant-client
                       ,servant-server

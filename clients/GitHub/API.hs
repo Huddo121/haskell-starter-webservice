@@ -41,11 +41,11 @@ instance FromHttpApiData RepositoryName where
   parseUrlPiece t = Right $ RepositoryName $ unpack t
 
 data RepositoryOwner = RepositoryOwner {
-  repositoryOwnerlogin :: UserName,
-  repositoryOwnerId :: Int,
-  repositoryOwnerUrl :: String,
-  repositoryOwnerAvatarUrl :: String,
-  repositoryOwnerRepositoryType :: String
+  ownerLogin :: UserName,
+  ownerId :: Int,
+  ownerUrl :: String,
+  ownerAvatarUrl :: String,
+  ownerType :: String
 } deriving (Eq, Show, Generic)
 
 instance FromJSON RepositoryOwner where

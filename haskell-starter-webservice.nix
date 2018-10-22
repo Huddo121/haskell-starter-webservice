@@ -1,6 +1,7 @@
-{ mkDerivation, aeson, aeson-casing, base, http-client-tls, lens
-, servant, servant-client, servant-docs, servant-server
-, servant-swagger, servant-swagger-ui, stdenv, swagger2, text, warp
+{ mkDerivation, aeson, aeson-casing, base, http-client
+, http-client-tls, http-types, lens, servant, servant-client
+, servant-docs, servant-server, servant-swagger, servant-swagger-ui
+, stdenv, swagger2, text, warp
 }:
 mkDerivation {
   pname = "haskell-starter-webservice";
@@ -9,8 +10,8 @@ mkDerivation {
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    aeson aeson-casing base http-client-tls servant servant-client
-    servant-server text
+    aeson aeson-casing base http-client http-client-tls http-types
+    servant servant-client servant-server text
   ];
   executableHaskellDepends = [
     base lens servant-docs servant-server servant-swagger
