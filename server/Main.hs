@@ -5,6 +5,9 @@
 module Main where
 
 import API  -- Root level API that re-exports its child APIs
+import Control.Monad.IO.Class (liftIO)
+import GitHub.API (UserName (..), RepositoryName (..))
+import GitHub.API.Clients
 import Network.Wai.Handler.Warp
 import Servant
 
@@ -16,7 +19,13 @@ main = do
 
 -- Create handlers for serving our API
 greetingHandler :: Server GreetingAPI
-greetingHandler name = pure $ Greeting $ "Hi " ++ show name ++ "!"
+greetingHandler name = do
+  forkMsg <- liftIO $ do
+    let req = getRepository (UserName name) (RepositoryName "haskell-starter-webservice")
+    res <- mkGitHubRequest req
+    print res
+    pure $ either (const "You haven't forked the repo on GitHub.") (const "You forked the repo!") res
+  pure $ Greeting $ "Hi " ++ show name ++ "! " ++ forkMsg
 
 fruitHandler :: Server FruitAPI
 fruitHandler request = case (fruitName request, fruitType request) of
