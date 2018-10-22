@@ -11,24 +11,21 @@ import Servant.Client
 repositoryAPI :: Proxy RepositoryAPI
 repositoryAPI = Proxy
 
-myClient :: UserName -> RepositoryName -> ClientM Repository
-myClient = client repositoryAPI
+getRepository :: UserName -> RepositoryName -> ClientM Repository
+getRepository = client repositoryAPI
 
-getMyRepo :: ClientM Repository
-getMyRepo = do
+getHaskellStarterRepo :: ClientM Repository
+getHaskellStarterRepo = do
   let user = UserName "huddo121"
       repo = RepositoryName "haskell-starter-webservice"
-  myClient user repo
+  getRepository user repo
 
 -- The GitHub API requires that we set *some* sort of UserAgent header
 addUserAgent :: Request -> IO Request
 addUserAgent req = pure req { requestHeaders = [(hUserAgent, "http-client-tls")] }
 
-doTheThing = do
+mkGitHubRequest :: (GitHubRequestable a) => ClientM a -> IO (Either ServantError a)
+mkGitHubRequest req = do
   let baseUrl = BaseUrl Https "api.github.com" 443 ""
   manager <- newManager tlsManagerSettings { managerModifyRequest = addUserAgent }
-  putStrLn $ "Calling " ++ showBaseUrl baseUrl
-  res <- runClientM getMyRepo (mkClientEnv manager baseUrl)
-  case res of
-    Left err -> putStrLn $ "Error: " ++ show err
-    Right repo -> print repo
+  runClientM req (mkClientEnv manager baseUrl)

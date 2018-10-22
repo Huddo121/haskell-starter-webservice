@@ -78,3 +78,8 @@ instance FromJSON License where
 
 instance ToJSON License where
   toJSON = genericToJSON ghJSONOptions
+
+
+-- We can limit the callers of the mkGitHubRequest function with a trivial typeclass
+class GitHubRequestable a where
+instance GitHubRequestable Repository
