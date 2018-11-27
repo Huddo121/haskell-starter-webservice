@@ -1,7 +1,8 @@
 rec {
   ghcVersion = "ghc843";
-  nixpkgs = import (fetchTarball https://nixos.org/channels/nixos-18.09/nixexprs.tar.xz) {
+  nixpkgs = import (fetchTarball https://github.com/NixOS/nixpkgs/tarball/a7fd4310c0cc7f50d2e5eb1f6172c31969569930) {
     config = {
+      allowUnfree = true;
       packageOverrides = pkgs: rec {
         hPkgs = pkgs.haskell.packages.${ghcVersion};
 
@@ -13,5 +14,5 @@ rec {
       };
     };
   };
-  hie = import (fetchTarball https://github.com/domenkozar/hie-nix/tarball/96af698f0cfefdb4c3375fc199374856b88978dc) { };
+  hie = import (fetchTarball https://github.com/domenkozar/hie-nix/tarball/96af698f0cfefdb4c3375fc199374856b88978dc) { pkgs=nixpkgs; };
 }
