@@ -14,5 +14,5 @@ rec {
       };
     };
   };
-  hie = import (fetchTarball https://github.com/domenkozar/hie-nix/tarball/a270d8db4551f988437ac5db779a3cf614c4af68) { };
+  hie = import (fetchTarball https://github.com/domenkozar/hie-nix/tarball/a270d8db4551f988437ac5db779a3cf614c4af68) { pkgs=nixpkgs; };
 }

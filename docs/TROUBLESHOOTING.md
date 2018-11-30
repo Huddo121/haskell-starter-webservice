@@ -8,11 +8,20 @@ Drop in to the nix-shell for the project and run `cabal new-update`.
 
 Drop in to the nix-shell for the project and run `cabal new-udpate`.
 
-**The plugin seems to have stopped working**
+**Haskell-ide-engine seems to have stopped working**
 
 Yeah, it currently crashes a bit. It doesn't seem to handle file creation or deletion very well, nor updating the PROJECT_NAME.{nix|cabal} files. Hopefully this improves over time, this is still a very young plugin.
 
 This can sometimes also *seem* to occur if there is a specific problem in another file, such as a non-existant import, thankfully the fix there is to just fix up the issue at the source, but it might not be obvious why the file you're currently looking at isn't getting type-checked.
+
+**Haskell-ide-engine says it can't satisfy a package**
+
+Sometimes when updating HIE or GHC you may see an error message like the following appear when you start HIE and when you save a file.
+
+> Got error while processing diagnostics: <command line>: cannot satisfy -package-id aeson-1.3.1.1-Lq3qt0bucT8Ce9ru8xJuCI (use -v for more information)
+
+To resolve this jump in to the nix-shell and run `cabal install`.
+
 
 **'Setup: Encountered missing dependencies' when running `nix-build`**
 
