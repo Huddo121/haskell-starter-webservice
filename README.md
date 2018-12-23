@@ -29,7 +29,7 @@ This project uses [Nix](https://nixos.org/nix/) for its builds.
 
 ## Running the Server
 
-Once you have built the server, you can run `./result/bin/my-awesome-ws`.
+Once you have built the server, you can run `./result/bin/haskell-starter-webservice`.
 
 ## Documentation Server
 
