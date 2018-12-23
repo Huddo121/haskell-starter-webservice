@@ -1,0 +1,27 @@
+#! /bin/sh
+
+if [ -z "$1" ]
+  then
+    echo "Please supply the new name for your project."
+    echo "The name should have no whitespace in it. Prefer all lowercase and separate words with dashes."
+    exit 1
+fi
+
+PROJECT_NAME=$1
+
+# Replace references to haskell-starter-webservice in files
+function replace_hsw_in_file {
+  case $OSTYPE in
+    "darwin"*) sed -E -i '' "s/[hH]askell-[sS]tarter-[wW]eb[sS]ervice/$PROJECT_NAME/g" $1;;
+    "linux"*) sed -i "s/haskell-starter-webservice/$PROJECT_NAME/gI" $1;;
+    *) echo "Unable to detect OS, please follow manual instructions" ; exit 1;;
+  esac
+}
+
+# Files we want to replace haskell-starter-webservice in
+FOUND_FILES=$(grep -rli haskell-starter-webservice . --exclude-dir={.git,clients,result,server,dist} --exclude="./bin/rename-things")
+
+for f in $FOUND_FILES; replace_hsw_in_file $f; done
+
+# Rename files with haskell-starter-webservice in the name.
+for f in haskell-starter-webservice.*; do mv "$f" $(echo "$f" | sed "s/^haskell-starter-webservice/$PROJECT_NAME/g"); done
