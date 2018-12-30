@@ -33,6 +33,16 @@ This project is able to serve swagger docs that are derived from the types of yo
 swagger-ui, run `nix-build`, then `./result/bin/docserver`. Swagger-ui will start running on
 http://localhost:8443/swagger-ui.
 
+## Continuous Integration
+
+Basic configuration is included for the following CI providers:
+
+* [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines): [bitbucket-pipelines.yml](bitbucket-pipelines.yml)
+* [CircleCI](https://circleci.com): [.circleci/config.yml](.circleci/config.yml)
+* [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/): [gitlab-ci.yml](.gitlab-ci.yml)
+* [TravisCI](https://travis-ci.org/): [.travis.yml](.travis.yml)
+
+
 ## Documentation
 
 * [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
