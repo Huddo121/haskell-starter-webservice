@@ -6,7 +6,7 @@ with some of the fiddly bits taken care of for you, while providing a featureful
 ## Features
 
 * Nix based build and dev environment
-  * **NB:** Adding the `all-hies` cache to your nix setup is recommended, as it reduces the initial build time dramatically
+  * **NB:** [Adding the `all-hies` cache to your nix configuration](https://github.com/Infinisil/all-hies#cached-builds) is strongly recommended, using [cachix](https://github.com/cachix/cachix) you can run `cachix use all-hies` to get set up.
 * Lots of tooling! 🔨
   * [Haskell-Ide-Engine](https://github.com/haskell/haskell-ide-engine), and VS-Code integration, just install the [Haskell Language Server extension](https://marketplace.visualstudio.com/items?itemName=alanz.vscode-hie-server)
   * [GHCiD](https://github.com/ndmitchell/ghcid)
