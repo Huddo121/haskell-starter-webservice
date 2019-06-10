@@ -3,6 +3,16 @@
 A starter for building out haskell web services. The goal of this starter is to give you something to build on top of,
 with some of the fiddly bits taken care of for you, while providing a featureful and robust build and dev loop.
 
+## Features
+
+* Nix based build and dev environment
+  * **NB:** [Adding the `all-hies` cache to your nix configuration](https://github.com/Infinisil/all-hies#cached-builds) is strongly recommended, using [cachix](https://github.com/cachix/cachix) you can run `cachix use all-hies` to get set up.
+* Lots of tooling! 🔨
+  * [Haskell-Ide-Engine](https://github.com/haskell/haskell-ide-engine), and VS-Code integration, just install the [Haskell Language Server extension](https://marketplace.visualstudio.com/items?itemName=alanz.vscode-hie-server)
+  * [GHCiD](https://github.com/ndmitchell/ghcid)
+  * [Hoogle](https://github.com/ndmitchell/hoogle)
+  * [And more!](shell.nix)
+
 ## Using This Starter
 
 1. Fork this repo
@@ -15,7 +25,6 @@ with some of the fiddly bits taken care of for you, while providing a featureful
         * README.md
     * You will also need to rename the following files
         * haskell-starter-webservice.cabal -> my-awesome-ws.cabal
-        * haskell-starter-webservice.nix -> my-awesome-ws.nix
 1. Update your name and email in your project's freshly-renamed .cabal file
 1. Run `nix-build` to ensure you renamed everything
 1. Remove this introductory set of instructions and `bin/rename-things`
@@ -25,7 +34,7 @@ with some of the fiddly bits taken care of for you, while providing a featureful
 
 This project uses [Nix](https://nixos.org/nix/) for its builds.
 
-`nix build`
+You can build your project using `nix build`, your build outputs will be in the `result` directory.
 
 ## Running the Server
 

@@ -59,7 +59,7 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       ,aeson
                       ,servant-server
 
@@ -77,25 +77,33 @@ library
                       ,TypeFamilies
                       ,TypeOperators
 
-  -- Normally these would actually be in an external repository, or provided
-  -- by another project
-library clients
-  exposed-modules:     GitHub.API
+executable server
+  -- .hs or .lhs file containing the Main module.
+  main-is:             Main.hs
+
+  -- Modules included in this executable, other than Main.
+  other-modules:       GitHub.API
                       ,GitHub.API.Clients
 
-  hs-source-dirs:      clients
-  default-language:    Haskell2010
-
-  build-depends:       base >=4.11 && <4.12
+  -- Other library packages from which modules are imported.
+  build-depends:       base
+                      -- You will need to replace the following line with the same
+                      -- name you set for the package (on line 5)
                       ,aeson
                       ,aeson-casing
+                      ,haskell-starter-webservice
                       ,http-client
                       ,http-client-tls
                       ,http-types
                       ,servant
                       ,servant-client
                       ,servant-server
+                      ,servant-server
                       ,text
+                      ,warp
+
+  -- Directories containing source files.
+  hs-source-dirs:      server
 
   default-extensions:  DataKinds
                       ,DeriveGeneric
@@ -103,29 +111,6 @@ library clients
                       ,OverloadedStrings
                       ,TypeFamilies
                       ,TypeOperators
-
-
-executable server
-  -- .hs or .lhs file containing the Main module.
-  main-is:             Main.hs
-
-  -- Modules included in this executable, other than Main.
-  -- other-modules:
-
-  -- LANGUAGE extensions used by modules in this package.
-  -- other-extensions:
-
-  -- Other library packages from which modules are imported.
-  build-depends:       base >=4.11 && <4.12
-                      ,clients
-                      -- You will need to replace the following line with the same
-                      -- name you set for the package (on line 5)
-                      ,haskell-starter-webservice
-                      ,servant-server
-                      ,warp
-
-  -- Directories containing source files.
-  hs-source-dirs:      server
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
@@ -135,7 +120,7 @@ executable docserver
   hs-source-dirs:      docserver
   default-language:    Haskell2010
 
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       -- You will need to replace the following line with the same
                       -- name you set for the package (on line 5)
                       ,haskell-starter-webservice
