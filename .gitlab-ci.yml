@@ -1,0 +1,6 @@
+image: nixos/nix:2.1.3
+
+build:
+  script:
+    - nix-env -i git
+    - nix-build --max-jobs 10
