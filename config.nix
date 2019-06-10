@@ -1,8 +1,6 @@
 rec {
   # Which version of GHC does the project need to be built with? This must exist in both nixpkgs, and hie-nix
   ghcVersion = "ghc864";
-  # This should be compatible with the above ghcVersion
-  hieVersion = "hie86";
   # Bootstrap the ability to fetch from GitHub
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
 
@@ -26,12 +24,11 @@ rec {
       sha256 = "1m1ic0wgr2y0qq6iglpav1ajh6zcx2x4hk2fhf1n0p0h73v3601p";
     };
 
-    # The version of hie-nix we wish to include with the project
-    hie-nix = {
-      owner="domenkozar";
-      repo="hie-nix";
-      rev="922bbc7";
-      sha256="1wf80g1zbgglc3lyqrzfdaqrzhdgmzhgg1p81hd2cpp57gpai9wh";
+    all-hies = {
+      owner = "Infinisil";
+      repo = "all-hies";
+      rev = "a650670";
+      sha256 = "1m81gcbbxmf68j90j79h56k4zw5j7dihjz4brwj1qhvd8mb5psar";
     };
   };
 
@@ -49,6 +46,6 @@ rec {
     };
   };
 
-  # The version of haskell-ide-engine we are using
-  hie = (import (fetchFromGitHub repos.hie-nix) { }).${hieVersion};
+  # Pick a version of HIE that is compatible with our version of GHC.
+  hie = (import (fetchFromGitHub repos.all-hies) { }).versions.${ghcVersion};
 }
