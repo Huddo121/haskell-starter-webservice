@@ -6,16 +6,20 @@ with some of the fiddly bits taken care of for you, while providing a featureful
 ## Using This Starter
 
 1. Fork this repo
-1. Rename occurrences of haskell-starter-webservice to something more specific to your use case.
-   * haskell-starter-webservice.nix (filename and contents)
-   * haskell-starter-webservice.cabal (filename and contents)
-   * config.nix (contents)
-   * default.nix (contents)
-   * src/Main.hs (contents)
-   * bin/update-derivation
-1. Remove this introductory set of instructions
+1. If you're on macOS or Linux, you can call `./bin/rename-things my-awesome-ws`
+    * If you're running another operating system you can manually replace "haskell-starter-webservice" in the following places
+        * config.nix
+        * default.nix
+        * haskell-starter-webservice.cabal
+        * haskell-starter-webservice.nix
+        * README.md
+    * You will also need to rename the following files
+        * haskell-starter-webservice.cabal -> my-awesome-ws.cabal
+        * haskell-starter-webservice.nix -> my-awesome-ws.nix
+1. Update your name and email in your project's freshly-renamed .cabal file
 1. Run `nix-build` to ensure you renamed everything
-1. Push your repo to its new home! 🚀
+1. Remove this introductory set of instructions and `bin/rename-things`
+1. Build somethine awesome! 🚀
 
 ## Building This Project
 
@@ -25,7 +29,7 @@ This project uses [Nix](https://nixos.org/nix/) for its builds.
 
 ## Running the Server
 
-Once you have built the server, you can run `./result/bin/my-awesome-ws`.
+Once you have built the server, you can run `./result/bin/haskell-starter-webservice`.
 
 ## Documentation Server
 

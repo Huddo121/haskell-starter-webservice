@@ -1,2 +1,3 @@
 #! /bin/sh
+
 nix-shell --command "hie"

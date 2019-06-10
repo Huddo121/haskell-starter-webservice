@@ -24,3 +24,6 @@ cabal.project.local~
 
 # Nix specific ignore
 result
+
+# Miscellaneous ignores
+.DS_Store

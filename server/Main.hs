@@ -13,7 +13,7 @@ import Servant
 
 main :: IO ()
 main = do
-  putStrLn "Starting the haskell-starter-webservice!"
+  putStrLn "Starting the application on port 8081"
   run 8081 application
 
 

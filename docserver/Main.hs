@@ -5,7 +5,7 @@ module Main where
 
 import API
 import Control.Lens
-import           Data.Swagger
+import Data.Swagger
 import Data.Swagger.Operation
 import Network.Wai.Handler.Warp (run)
 import Servant
@@ -17,7 +17,8 @@ import Servant.Swagger.UI
 -- Serve the swagger documentation
 main :: IO ()
 main = do
-  putStrLn "Starting documentation server"
+  putStrLn "Starting documentation server on port 8443."
+  putStrLn "http://localhost:8443/swagger-ui"
   run 8443 swaggerUIApp
 
 swaggerDocs :: Swagger
