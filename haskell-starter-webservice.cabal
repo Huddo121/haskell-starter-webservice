@@ -59,7 +59,7 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       ,aeson
                       ,servant-server
 
@@ -86,7 +86,7 @@ library clients
   hs-source-dirs:      clients
   default-language:    Haskell2010
 
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       ,aeson
                       ,aeson-casing
                       ,http-client
@@ -116,7 +116,7 @@ executable server
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       ,clients
                       -- You will need to replace the following line with the same
                       -- name you set for the package (on line 5)
@@ -135,7 +135,7 @@ executable docserver
   hs-source-dirs:      docserver
   default-language:    Haskell2010
 
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base
                       -- You will need to replace the following line with the same
                       -- name you set for the package (on line 5)
                       ,haskell-starter-webservice

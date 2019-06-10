@@ -1,3 +1,0 @@
-#! /bin/sh
-set -eux
-nix-shell --command "cabal2nix ./. > haskell-starter-webservice.nix"
