@@ -25,7 +25,6 @@ with some of the fiddly bits taken care of for you, while providing a featureful
         * README.md
     * You will also need to rename the following files
         * haskell-starter-webservice.cabal -> my-awesome-ws.cabal
-        * haskell-starter-webservice.nix -> my-awesome-ws.nix
 1. Update your name and email in your project's freshly-renamed .cabal file
 1. Run `nix-build` to ensure you renamed everything
 1. Remove this introductory set of instructions and `bin/rename-things`
