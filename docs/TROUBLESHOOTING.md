@@ -35,3 +35,25 @@ Loaded package environment from /private/tmp/nix-build-my-awesome-ws-0.0.1.drv-0
 ghc: can't find a package database at /private/tmp/nix-build-my-awesome-ws-0.0.1.drv-0/my-awesome-ws/dist-newstyle/packagedb/ghc-8.4.3
 builder for '/nix/store/v75i0a3p899imjzh9a9x4lig2wk4fi58-my-awesome-ws-0.0.1.drv' failed with exit code 1
 ```
+
+**I get a `createReadProcess` error whenever I save**
+
+If you look in the the Haskell-Ide-Engine logs and see the following error message;
+
+```
+cabal-helper-wrapper: $projectRoot/dist-newstyle/build/$platform/$ghc/$projectNameAndVersion/setup-config: openFile: does not exist (No such file or directory)
+```
+
+Then inside a `nix-shell`, run `cabal new-build`. Once this succeeds that file will be created. You must be able to get at least one successful compile.
+
+
+**I can run `cabal new-build` just fine, but `nix-build` fails**
+
+If when you run `nix-build` it fails, and you see output similar to the following;
+
+```
+Loaded package environment from /build/$project/.ghc.environment.x86_64-linux-8.6.4
+ghc: can't find a package database at /home/$user/.cabal/store/ghc-8.6.4/package.db
+```
+
+Then there's an environment file floating around in your build directory. This is created when you run `cabal new-build`, so jumping between the two types of builds results in this issue. Just delete the environment file and try again.

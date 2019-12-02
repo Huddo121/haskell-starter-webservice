@@ -27,8 +27,8 @@ rec {
     all-hies = {
       owner = "Infinisil";
       repo = "all-hies";
-      rev = "a650670";
-      sha256 = "1m81gcbbxmf68j90j79h56k4zw5j7dihjz4brwj1qhvd8mb5psar";
+      rev = "c4fad11";
+      sha256 = "19spg5xnb1gdnxal4vp402dknfhbva5jj5yq34qyzvksyn16c3dp";
     };
   };
 
