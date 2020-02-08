@@ -24,7 +24,7 @@ getHaskellStarterRepo = do
 addUserAgent :: Request -> IO Request
 addUserAgent req = pure req { requestHeaders = [(hUserAgent, "http-client-tls")] }
 
-mkGitHubRequest :: (GitHubRequestable a) => ClientM a -> IO (Either ServantError a)
+mkGitHubRequest :: (GitHubRequestable a) => ClientM a -> IO (Either ClientError a)
 mkGitHubRequest req = do
   let baseUrl = BaseUrl Https "api.github.com" 443 ""
   manager <- newManager tlsManagerSettings { managerModifyRequest = addUserAgent }
