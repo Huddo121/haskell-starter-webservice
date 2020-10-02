@@ -1,6 +1,12 @@
 rec {
   # Which version of GHC does the project need to be built with? This must exist in both nixpkgs, and hie-nix
   ghcVersion = "ghc865";
+  languageServerGHCVersion = "8.6.5";
+
+  # Pick a release version from https://github.com/haskell/haskell-language-server/releases
+  # Double check to make sure it's available in https://github.com/masaeedu/all-hls/blob/master/sources.json
+  languageServerVersion = "0.4.0";
+
   # Bootstrap the ability to fetch from GitHub
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
 
@@ -24,11 +30,11 @@ rec {
       sha256 = "0kaazqda1saaasyd2dg3zz2zwag36555x981znplq4fq85brval5";
     };
 
-    all-hies = {
-      owner = "Infinisil";
-      repo = "all-hies";
-      rev = "9214868";
-      sha256 = "1yb75f8p09dp4yx5d3w3wvdiflaav9a5202xz9whigk2p9ndwbp5";
+    all-hls = {
+      owner = "masaeedu";
+      repo = "all-hls";
+      rev = "155e57d7ca9f79ce293360f98895e9bd68d12355";
+      sha256 = "04s3mrxjdr7gmd901l1z23qglqmn8i39v7sdf2fv4zbv6hz24ydb";
     };
   };
 
@@ -46,6 +52,13 @@ rec {
     };
   };
 
-  # Pick a version of HIE that is compatible with our version of GHC.
-  hie = (import (fetchFromGitHub repos.all-hies) { }).versions.${ghcVersion};
+  # Make sure we're getting the right version of the Haskell-Language server for our GHC version and our Operating System
+  haskellLanguageServer = let
+          platform = if builtins.currentSystem == "x86_64-darwin" then "MacOS" else "Linux";
+        in (import (fetchFromGitHub repos.all-hls) {
+          pkgs = nixpkgs;
+          platform = platform;
+          version = languageServerVersion;
+          ghc = languageServerGHCVersion;
+        });
 }

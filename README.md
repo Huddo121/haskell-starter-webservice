@@ -6,9 +6,8 @@ with some of the fiddly bits taken care of for you, while providing a featureful
 ## Features
 
 * Nix based build and dev environment
-  * **NB:** [Adding the `all-hies` cache to your nix configuration](https://github.com/Infinisil/all-hies#cached-builds) is strongly recommended, using [cachix](https://github.com/cachix/cachix) you can run `cachix use all-hies` to get set up.
 * Lots of tooling! 🔨
-  * [Haskell-Ide-Engine](https://github.com/haskell/haskell-ide-engine), and VS-Code integration, just install the [Haskell Language Server extension](https://marketplace.visualstudio.com/items?itemName=alanz.vscode-hie-server)
+  * [Haskell Language Server](https://github.com/haskell/haskell-language-server), and VS-Code integration, just install the [Haskell extension](https://marketplace.visualstudio.com/items?itemName=haskell.haskell)
   * [GHCiD](https://github.com/ndmitchell/ghcid)
   * [Hoogle](https://github.com/ndmitchell/hoogle)
   * [And more!](shell.nix)
@@ -21,7 +20,6 @@ with some of the fiddly bits taken care of for you, while providing a featureful
         * config.nix
         * default.nix
         * haskell-starter-webservice.cabal
-        * haskell-starter-webservice.nix
         * README.md
     * You will also need to rename the following files
         * haskell-starter-webservice.cabal -> my-awesome-ws.cabal

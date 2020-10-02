@@ -17,12 +17,11 @@ main = do
   run 8081 application
 
 
--- Create handlers for serving our API
+-- |Create handlers for serving our API
 greetingHandler :: Server GreetingAPI
 greetingHandler name = do
   forkMsg <- liftIO $ do
-    let req = getRepository (UserName name) (RepositoryName "haskell-starter-webservice")
-    res <- mkGitHubRequest req
+    res <- mkGitHubRequest getHaskellStarterRepo
     print res
     pure $ either (const "You haven't forked the repo on GitHub.") (const "You forked the repo!") res
   pure $ Greeting $ "Hi " ++ show name ++ "! " ++ forkMsg
