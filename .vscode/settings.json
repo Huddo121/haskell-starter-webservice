@@ -6,6 +6,5 @@
   "files.insertFinalNewline": true,
 
   "haskell.indentationRules.enabled": true,
-  "languageServerHaskell.useCustomHieWrapper": true,
-  "languageServerHaskell.useCustomHieWrapperPath": "${workspaceRoot}/bin/hie-wrapper"
+  "haskell.serverExecutablePath": "${workspaceRoot}/bin/hls-wrapper"
 }
