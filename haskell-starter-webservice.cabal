@@ -131,3 +131,16 @@ executable docserver
                       ,servant-swagger-ui
                       ,swagger2
                       ,warp
+
+test-suite tests
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Main.hs
+  other-modules:       Specs
+
+  build-depends:       base
+                      ,hspec
+                      ,hspec-junit-formatter
+
+  build-tool-depends:
+      hspec-discover:hspec-discover
