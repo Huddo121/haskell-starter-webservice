@@ -1,11 +1,7 @@
+# This is a recursive attribute set, meaning that these definitions aren't resolved top-to-bottom,
 rec {
-  # Which version of GHC does the project need to be built with? This must exist in both nixpkgs, and hie-nix
-  ghcVersion = "ghc865";
-  languageServerGHCVersion = "8.6.5";
-
-  # Pick a release version from https://github.com/haskell/haskell-language-server/releases
-  # Double check to make sure it's available in https://github.com/masaeedu/all-hls/blob/master/sources.json
-  languageServerVersion = "0.4.0";
+  # Which version of GHC does the project need to be built with? This must exist in both nixpkgs
+  ghcVersion = "ghc8107Binary";
 
   # Bootstrap the ability to fetch from GitHub
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
@@ -23,18 +19,12 @@ rec {
   #  nix-prefetch-url --unpack https://github.com/$OWNER/$REPO/archive/$REV.tar.gz
   repos = {
     # A specific commit of the nixpkgs repository we wish to build from, for maximum repeatability
+    # nix-prefetch-url --unpack https://github.com/nixos/nixpkgs/archive/$REV.tar.gz
     nixpkgs = {
       owner = "NixOs";
       repo = "nixpkgs";
-      rev = "27c3d36";
-      sha256 = "0kaazqda1saaasyd2dg3zz2zwag36555x981znplq4fq85brval5";
-    };
-
-    all-hls = {
-      owner = "masaeedu";
-      repo = "all-hls";
-      rev = "155e57d7ca9f79ce293360f98895e9bd68d12355";
-      sha256 = "04s3mrxjdr7gmd901l1z23qglqmn8i39v7sdf2fv4zbv6hz24ydb";
+      rev = "96e897e2ae90799045632a86c04fbfb9c3ac2672";
+      sha256 = "1icwjz59q1fwik3whj1hz1mjig9w2cz3pl73f69fmryjpc03hqg3";
     };
   };
 
@@ -52,13 +42,5 @@ rec {
     };
   };
 
-  # Make sure we're getting the right version of the Haskell-Language server for our GHC version and our Operating System
-  haskellLanguageServer = let
-          platform = if builtins.currentSystem == "x86_64-darwin" then "MacOS" else "Linux";
-        in (import (fetchFromGitHub repos.all-hls) {
-          pkgs = nixpkgs;
-          platform = platform;
-          version = languageServerVersion;
-          ghc = languageServerGHCVersion;
-        });
+  haskellLanguageServer = nixpkgs.haskellPackages.haskell-language-server;
 }
