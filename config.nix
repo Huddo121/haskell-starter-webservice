@@ -1,7 +1,7 @@
 # This is a recursive attribute set, meaning that these definitions aren't resolved top-to-bottom,
 rec {
   # Which version of GHC does the project need to be built with? This must exist in both nixpkgs
-  ghcVersion = "ghc8107Binary";
+  ghcVersion = "ghc8107";
 
   # Bootstrap the ability to fetch from GitHub
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
@@ -23,13 +23,14 @@ rec {
     nixpkgs = {
       owner = "NixOs";
       repo = "nixpkgs";
-      rev = "96e897e2ae90799045632a86c04fbfb9c3ac2672";
-      sha256 = "1icwjz59q1fwik3whj1hz1mjig9w2cz3pl73f69fmryjpc03hqg3";
+      rev = "6b23e8fc7820366e489377b5b00890f088f36a01";
+      sha256 = "0jy86psfq0wbsjfcf5v1c2pswlz6yjpw7cypq9sy9b9pvgzd7720";
     };
   };
 
   # Our custom copy of nixpkgs, with our project's package injected in to the set of haskellPackages
   nixpkgs = import (fetchFromGitHub repos.nixpkgs) {
+  # nixpkgs = import <nixpkgs> {
     config = {
       # allowUnfree = true;
       packageOverrides = pkgs: rec {
@@ -42,5 +43,5 @@ rec {
     };
   };
 
-  haskellLanguageServer = nixpkgs.haskellPackages.haskell-language-server;
+  haskellLanguageServer = hpkgs.haskell-language-server;
 }
