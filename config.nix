@@ -1,11 +1,6 @@
 rec {
-  # Which version of GHC does the project need to be built with? This must exist in both nixpkgs, and hie-nix
-  ghcVersion = "ghc865";
-  languageServerGHCVersion = "8.6.5";
-
-  # Pick a release version from https://github.com/haskell/haskell-language-server/releases
-  # Double check to make sure it's available in https://github.com/masaeedu/all-hls/blob/master/sources.json
-  languageServerVersion = "0.4.0";
+  # Which version of GHC does the project need to be built with?
+  ghcVersion = "ghc8107";
 
   # Bootstrap the ability to fetch from GitHub
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
@@ -23,24 +18,19 @@ rec {
   #  nix-prefetch-url --unpack https://github.com/$OWNER/$REPO/archive/$REV.tar.gz
   repos = {
     # A specific commit of the nixpkgs repository we wish to build from, for maximum repeatability
+    # nix-prefetch-url --unpack https://github.com/nixos/nixpkgs/archive/$REV.tar.gz
     nixpkgs = {
       owner = "NixOs";
       repo = "nixpkgs";
-      rev = "27c3d36";
-      sha256 = "0kaazqda1saaasyd2dg3zz2zwag36555x981znplq4fq85brval5";
-    };
-
-    all-hls = {
-      owner = "masaeedu";
-      repo = "all-hls";
-      rev = "155e57d7ca9f79ce293360f98895e9bd68d12355";
-      sha256 = "04s3mrxjdr7gmd901l1z23qglqmn8i39v7sdf2fv4zbv6hz24ydb";
+      rev = "6b23e8fc7820366e489377b5b00890f088f36a01";
+      sha256 = "0jy86psfq0wbsjfcf5v1c2pswlz6yjpw7cypq9sy9b9pvgzd7720";
     };
   };
 
   # Our custom copy of nixpkgs, with our project's package injected in to the set of haskellPackages
   nixpkgs = import (fetchFromGitHub repos.nixpkgs) {
     config = {
+      # If you choose a non-free license or add a non-free dependency, you may need to provide this config:
       # allowUnfree = true;
       packageOverrides = pkgs: rec {
         haskellPackages = hpkgs.override {
@@ -52,13 +42,5 @@ rec {
     };
   };
 
-  # Make sure we're getting the right version of the Haskell-Language server for our GHC version and our Operating System
-  haskellLanguageServer = let
-          platform = if builtins.currentSystem == "x86_64-darwin" then "MacOS" else "Linux";
-        in (import (fetchFromGitHub repos.all-hls) {
-          pkgs = nixpkgs;
-          platform = platform;
-          version = languageServerVersion;
-          ghc = languageServerGHCVersion;
-        });
+  haskellLanguageServer = hpkgs.haskell-language-server;
 }
