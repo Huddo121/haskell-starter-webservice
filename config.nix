@@ -1,6 +1,5 @@
-# This is a recursive attribute set, meaning that these definitions aren't resolved top-to-bottom,
 rec {
-  # Which version of GHC does the project need to be built with? This must exist in both nixpkgs
+  # Which version of GHC does the project need to be built with?
   ghcVersion = "ghc8107";
 
   # Bootstrap the ability to fetch from GitHub
@@ -30,8 +29,8 @@ rec {
 
   # Our custom copy of nixpkgs, with our project's package injected in to the set of haskellPackages
   nixpkgs = import (fetchFromGitHub repos.nixpkgs) {
-  # nixpkgs = import <nixpkgs> {
     config = {
+      # If you choose a non-free license or add a non-free dependency, you may need to provide this config:
       # allowUnfree = true;
       packageOverrides = pkgs: rec {
         haskellPackages = hpkgs.override {
