@@ -14,11 +14,10 @@ repositoryAPI = Proxy
 getRepository :: UserName -> RepositoryName -> ClientM Repository
 getRepository = client repositoryAPI
 
-getHaskellStarterRepo :: ClientM Repository
-getHaskellStarterRepo = do
-  let user = UserName "huddo121"
-      repo = RepositoryName "haskell-starter-webservice"
-  getRepository user repo
+getHaskellStarterRepo :: UserName -> ClientM Repository
+getHaskellStarterRepo username = do
+  let repo = RepositoryName "haskell-starter-webservice"
+  getRepository username repo
 
 -- The GitHub API requires that we set *some* sort of UserAgent header
 addUserAgent :: Request -> IO Request

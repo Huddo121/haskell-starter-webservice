@@ -19,7 +19,7 @@ function replace_hsw_in_file {
 }
 
 # Files we want to replace haskell-starter-webservice in
-FOUND_FILES=$(grep -rli haskell-starter-webservice . --exclude-dir={.git,clients,result,server,dist} --exclude="rename-things" --no-messages)
+FOUND_FILES=$(grep -rli haskell-starter-webservice . --exclude-dir={.git,result,app,bin,dist,dist-newstyle} --exclude="rename-things" --no-messages)
 
 for f in $FOUND_FILES; do replace_hsw_in_file $f; done
 
