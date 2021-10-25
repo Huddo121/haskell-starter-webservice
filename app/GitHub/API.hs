@@ -18,10 +18,11 @@ data Repository = Repository {
   repositoryOwner :: RepositoryOwner,
   repositoryPrivate :: Bool,
   repositoryDescription :: String,
-  repositoryLanguage :: ProgrammingLanguage,
+  repositoryLanguage :: Maybe ProgrammingLanguage,
   repositoryStargazersCount :: Int,
   repositoryWatchersCount :: Int,
-  repositoryLicense :: License
+  repositoryLicense :: License,
+  repositoryParent :: Maybe Repository
 } deriving (Eq, Show, Generic)
 
 instance FromJSON Repository where
