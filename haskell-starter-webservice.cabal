@@ -46,7 +46,46 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 
+-- The primary bundle package where this service's code will reside
 library
+  exposed-modules:     App
+                      ,GitHub.API
+                      ,GitHub.API.Clients
+
+  -- Other library packages from which modules are imported.
+  build-depends:       base
+                      -- You will need to replace the following line with the same
+                      -- name you set for the package (on line 5)
+                      ,aeson
+                      ,aeson-casing
+                      ,haskell-starter-webservice-api
+                      ,http-client
+                      ,http-client-tls
+                      ,http-types
+                      ,servant
+                      ,servant-client
+                      ,servant-server
+                      ,servant-server
+                      ,text
+                      ,warp
+
+  -- Directories containing source files.
+  hs-source-dirs:      app
+
+  default-extensions:  DataKinds
+                      ,DeriveGeneric
+                      ,GADTs
+                      ,OverloadedStrings
+                      ,TypeFamilies
+                      ,TypeOperators
+
+  -- Base language which the package is written in.
+  default-language:    Haskell2010
+
+-- A package for the API exposed by this service.
+-- Publishing this standalone allows others to create clients for our API
+--   with servant.
+library haskell-starter-webservice-api
   -- Modules exported by the library.
   exposed-modules:     API
                       ,Fruit.API
@@ -64,7 +103,7 @@ library
                       ,servant-server
 
   -- Directories containing source files.
-  hs-source-dirs:      lib
+  hs-source-dirs:      api
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
@@ -77,29 +116,16 @@ library
                       ,TypeFamilies
                       ,TypeOperators
 
+-- A simple package that just produces an executable for this service.
+-- The test suites cannot import from an executable, so we want to have
+--   the vast majority of our service's code in library packages.
 executable server
   -- .hs or .lhs file containing the Main module.
   main-is:             Main.hs
 
-  -- Modules included in this executable, other than Main.
-  other-modules:       GitHub.API
-                      ,GitHub.API.Clients
-
   -- Other library packages from which modules are imported.
   build-depends:       base
-                      -- You will need to replace the following line with the same
-                      -- name you set for the package (on line 5)
-                      ,aeson
-                      ,aeson-casing
                       ,haskell-starter-webservice
-                      ,http-client
-                      ,http-client-tls
-                      ,http-types
-                      ,servant
-                      ,servant-client
-                      ,servant-server
-                      ,servant-server
-                      ,text
                       ,warp
 
   -- Directories containing source files.
@@ -115,6 +141,8 @@ executable server
   -- Base language which the package is written in.
   default-language:    Haskell2010
 
+-- A server that will host Swagger-UI and use the definitions from the
+--   api package defined above.
 executable docserver
   main-is:             Main.hs
   hs-source-dirs:      docserver
@@ -123,7 +151,7 @@ executable docserver
   build-depends:       base
                       -- You will need to replace the following line with the same
                       -- name you set for the package (on line 5)
-                      ,haskell-starter-webservice
+                      ,haskell-starter-webservice-api
                       ,lens
                       ,servant-docs
                       ,servant-server
