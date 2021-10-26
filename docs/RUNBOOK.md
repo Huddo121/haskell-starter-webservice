@@ -25,13 +25,13 @@ Update the .cabal file with your new dependencies, as you would for any regular 
 
 If it's a haskell package, we can just create a new derivation pointing to the newer (or older) version of the package. In `config.nix` we specify some package overrides to inject our own project in to the list of dependencies, we can do the same for other dependencies too!
 
-If you find the package you want on hackage, you can run `cabal2nix cabal://monad-persist > monad-persist.nix`, and then add a call to the new expression in the overrides.
+If you find the package you want on hackage, you can run `cabal2nix cabal://monad-persist > deps/monad-persist.nix`, and then add a call to the new expression in the overrides.
 
 ```
 haskellPackages = hPkgs.override {
   overrides = super: self: {
     my-awesome-ws = self.callPackage ./my-awesome-ws.nix { };
-    monad-persist = self.callPackage ./monad-persist.nix { };
+    monad-persist = self.callPackage ./deps/monad-persist.nix { };
   };
 };
 ```

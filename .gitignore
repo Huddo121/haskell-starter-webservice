@@ -27,3 +27,6 @@ result
 
 # Miscellaneous ignores
 .DS_Store
+
+# Ignore test reports
+/test-reports
