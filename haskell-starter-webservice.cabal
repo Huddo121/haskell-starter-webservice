@@ -168,14 +168,19 @@ test-suite unit-tests
   other-modules:       Specs
 
   build-depends:       base
+                      ,aeson
+                      ,bytestring
                       ,haskell-starter-webservice
                       ,haskell-starter-webservice-api
                       ,http-client
+                      ,http-types
                       ,hspec
                       ,hspec-junit-formatter
                       ,hspec-wai
                       ,servant-client
                       ,servant-server
+                      ,text
+                      ,wai-extra
                       ,warp
 
   build-tool-depends:
@@ -183,3 +188,10 @@ test-suite unit-tests
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
+
+  default-extensions:  DataKinds
+                      ,DeriveGeneric
+                      ,GADTs
+                      ,OverloadedStrings
+                      ,TypeFamilies
+                      ,TypeOperators

@@ -1,7 +1,7 @@
 module GitHub.API.Clients where
 
 import GitHub.API
-import Network.HTTP.Client (newManager, managerModifyRequest, requestHeaders, Request)
+import Network.HTTP.Client (Request, managerModifyRequest, newManager, requestHeaders)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
 import Network.HTTP.Types.Header
 import Servant
@@ -21,10 +21,10 @@ getHaskellStarterRepo username = do
 
 -- The GitHub API requires that we set *some* sort of UserAgent header
 addUserAgent :: Request -> IO Request
-addUserAgent req = pure req { requestHeaders = [(hUserAgent, "http-client-tls")] }
+addUserAgent req = pure req {requestHeaders = [(hUserAgent, "http-client-tls")]}
 
 mkGitHubRequest :: (GitHubRequestable a) => ClientM a -> IO (Either ClientError a)
 mkGitHubRequest req = do
   let baseUrl = BaseUrl Https "api.github.com" 443 ""
-  manager <- newManager tlsManagerSettings { managerModifyRequest = addUserAgent }
+  manager <- newManager tlsManagerSettings {managerModifyRequest = addUserAgent}
   runClientM req (mkClientEnv manager baseUrl)
