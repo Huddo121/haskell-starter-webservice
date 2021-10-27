@@ -2,7 +2,7 @@ image: nixos/nix:2.3.6
 
 build:
   script:
-    - nix-env -i git
+    - nix-env -i git wget
     - nix-build --max-jobs 10
     - nix-shell --command "cabal test --test-show-details=streaming"
   # Upload test reports
