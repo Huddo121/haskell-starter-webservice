@@ -7,6 +7,4 @@ jobs:
       - checkout
       - run: nix-env -i wget
       # - run: nix-build
-      - run: nix-shell
-      - run: cabal update
-      - run: cabal test --enable-tests --test-show-details=streaming
+      - run: nix-shell --command "cabal update; cabal test --enable-tests --test-show-details=streaming"
