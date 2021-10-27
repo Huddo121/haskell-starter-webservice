@@ -20,7 +20,7 @@ main = do
   hPutStrLn stderr $ maybe "CI EnvVar not set" (\val -> "EnvVar CI=" ++ val) ci
   when isOnCI $ hPutStrLn stderr "Running with CI config"
 
-  hspecWith config Specs.spec
+  hspecWith ciConfig Specs.spec
 
 -- | Configuration used when we detect that we're running in CI. Will produce a junit XML test report,
 --     which should allow most CI systems to display more detailed test run information in their UI.
