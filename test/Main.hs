@@ -4,13 +4,21 @@ import qualified Specs
 import System.Environment (lookupEnv)
 import Test.HSpec.JUnit (configWith)
 import Test.Hspec.Runner
+import Control.Monad (when)
+import Data.Maybe (isJust)
 
 main :: IO ()
 main = do
   ci <- lookupEnv "CI"
-  let config = case ci of
-        Just v | v == "1" -> ciConfig
-        _ -> localConfig
+
+  let isOnCI = case ci of
+        Just v | v == "1" || v == "true" -> True
+        _ -> False
+      config = if isOnCI then ciConfig else localConfig
+
+  putStrLn $ maybe "CI EnvVar not set" (\val -> "EnvVar CI=" ++ val) ci
+  when isOnCI $ putStrLn "Running with CI config"
+
   hspecWith config Specs.spec
 
 -- | Configuration used when we detect that we're running in CI. Will produce a junit XML test report,
