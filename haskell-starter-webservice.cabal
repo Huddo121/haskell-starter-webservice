@@ -173,7 +173,6 @@ test-suite unit-tests
                       ,haskell-starter-webservice
                       ,haskell-starter-webservice-api
                       ,hspec
-                      ,hspec-discover
                       ,hspec-junit-formatter
                       ,hspec-wai
                       ,http-client
