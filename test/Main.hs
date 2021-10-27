@@ -6,6 +6,7 @@ import Test.HSpec.JUnit (configWith)
 import Test.Hspec.Runner
 import Control.Monad (when)
 import Data.Maybe (isJust)
+import System.IO (hPutStrLn, stderr)
 
 main :: IO ()
 main = do
@@ -16,8 +17,8 @@ main = do
         _ -> False
       config = if isOnCI then ciConfig else localConfig
 
-  putStrLn $ maybe "CI EnvVar not set" (\val -> "EnvVar CI=" ++ val) ci
-  when isOnCI $ putStrLn "Running with CI config"
+  hPutStrLn stderr $ maybe "CI EnvVar not set" (\val -> "EnvVar CI=" ++ val) ci
+  when isOnCI $ hPutStrLn stderr "Running with CI config"
 
   hspecWith config Specs.spec
 

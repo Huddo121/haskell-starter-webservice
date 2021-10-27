@@ -7,4 +7,3 @@ pipelines:
           - nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
           - nix-channel --update
           - nix-build
-          - nix-shell --command "cabal test --test-show-details=streaming"

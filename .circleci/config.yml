@@ -5,6 +5,4 @@ jobs:
       - image: nixos/nix:2.3.6
     steps:
       - checkout
-      - run: nix-env -i wget
       - run: nix-build
-      - run: nix-shell --command "cabal test --test-show-details=streaming"
