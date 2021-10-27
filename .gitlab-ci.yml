@@ -4,3 +4,8 @@ build:
   script:
     - nix-env -i git
     - nix-build --max-jobs 10
+  # Upload test reports
+  artifacts:
+    when: always
+    reports:
+      junit: test-reports/*.xml
