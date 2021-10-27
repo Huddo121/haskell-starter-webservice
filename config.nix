@@ -35,7 +35,8 @@ rec {
       packageOverrides = pkgs: rec {
         haskellPackages = hpkgs.override {
           overrides = super: self: {
-            haskell-starter-webservice = drv;
+            # Use `dontCheck` to disable test runs during nix-build
+            haskell-starter-webservice = pkgs.haskell.lib.dontCheck drv;
           };
         };
       };

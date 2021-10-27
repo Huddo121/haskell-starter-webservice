@@ -51,6 +51,7 @@ Basic configuration is included for the following CI providers:
 * [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines): [bitbucket-pipelines.yml](bitbucket-pipelines.yml)
 * [CircleCI](https://circleci.com): [.circleci/config.yml](.circleci/config.yml)
 * [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/): [gitlab-ci.yml](.gitlab-ci.yml)
+* [GitHub Actions](https://docs.github.com/en/actions): [build.yml](.github/workflows/build.yml)
 
 
 ## Documentation
