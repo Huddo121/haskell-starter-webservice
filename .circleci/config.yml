@@ -6,3 +6,4 @@ jobs:
     steps:
       - checkout
       - run: nix-build
+      - run: nix-shell --command "cabal test --test-show-details=streaming"

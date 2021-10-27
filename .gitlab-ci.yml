@@ -4,6 +4,7 @@ build:
   script:
     - nix-env -i git
     - nix-build --max-jobs 10
+    - nix-shell --command "cabal test --test-show-details=streaming"
   # Upload test reports
   artifacts:
     when: always
