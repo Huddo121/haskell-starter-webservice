@@ -172,11 +172,11 @@ test-suite unit-tests
                       ,bytestring
                       ,haskell-starter-webservice
                       ,haskell-starter-webservice-api
-                      ,http-client
-                      ,http-types
                       ,hspec
                       ,hspec-junit-formatter
                       ,hspec-wai
+                      ,http-client
+                      ,http-types
                       ,servant-client
                       ,servant-server
                       ,text
