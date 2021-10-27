@@ -159,3 +159,39 @@ executable docserver
                       ,servant-swagger-ui
                       ,swagger2
                       ,warp
+
+-- A test suite for verifying our code works as expected
+test-suite unit-tests
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Main.hs
+  other-modules:       Specs
+
+  build-depends:       base
+                      ,aeson
+                      ,bytestring
+                      ,haskell-starter-webservice
+                      ,haskell-starter-webservice-api
+                      ,hspec
+                      ,hspec-junit-formatter
+                      ,hspec-wai
+                      ,http-client
+                      ,http-types
+                      ,servant-client
+                      ,servant-server
+                      ,text
+                      ,wai-extra
+                      ,warp
+
+  build-tool-depends:
+      hspec-discover:hspec-discover
+
+  -- Base language which the package is written in.
+  default-language:    Haskell2010
+
+  default-extensions:  DataKinds
+                      ,DeriveGeneric
+                      ,GADTs
+                      ,OverloadedStrings
+                      ,TypeFamilies
+                      ,TypeOperators
