@@ -1,6 +1,7 @@
 module Specs.AppHandlerSpec where
 
 import App (fruitHandler)
+import qualified App
 import Control.Concurrent.MVar
 import Control.Exception (bracket)
 import Data.Aeson
@@ -9,9 +10,8 @@ import Data.Proxy (Proxy (Proxy))
 import Fruit.API
 import Network.HTTP.Client (Request, defaultManagerSettings, newManager)
 import Network.HTTP.Types
-import Network.Wai.Test (SResponse)
-import qualified App
 import qualified Network.Wai.Handler.Warp as Warp
+import Network.Wai.Test (SResponse)
 import Servant.Client
 import Servant.Server (serve)
 import Test.Hspec
