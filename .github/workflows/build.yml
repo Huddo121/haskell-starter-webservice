@@ -15,7 +15,7 @@ jobs:
       # - run: nix-build
       - run: nix-shell --command "cabal update; cabal test --enable-tests --test-show-details=streaming; exit"
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: scacap/action-surefire-report@v1
         if: always()
         with:
-          files: test-reports/**/*.xml
+          report_paths: 'test-reports/**/*.xml'
