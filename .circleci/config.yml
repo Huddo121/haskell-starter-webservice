@@ -5,4 +5,8 @@ jobs:
       - image: nixos/nix:2.3.6
     steps:
       - checkout
-      - run: nix-build
+      - run: nix-env -i wget
+      # - run: nix-build
+      - run: nix-shell --command "cabal update; cabal test --enable-tests --test-show-details=streaming; exit"
+      - store_test_results:
+          path: ./test-reports/unit-tests/test_results.xml

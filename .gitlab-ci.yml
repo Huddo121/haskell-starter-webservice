@@ -2,5 +2,11 @@ image: nixos/nix:2.3.6
 
 build:
   script:
-    - nix-env -i git
-    - nix-build --max-jobs 10
+    - nix-env -i git wget
+    # - nix-build --max-jobs 10
+    - nix-shell --command "cabal update; cabal test --enable-tests --test-show-details=streaming"
+  # Upload test reports
+  artifacts:
+    when: always
+    reports:
+      junit: test-reports/unit-tests/*.xml
