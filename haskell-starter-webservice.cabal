@@ -166,6 +166,7 @@ test-suite unit-tests
   hs-source-dirs:      test
   main-is:             Main.hs
   other-modules:       Specs
+                      ,Specs.AppHandlerSpec
 
   build-depends:       base
                       ,aeson
