@@ -8,3 +8,5 @@ jobs:
       - run: nix-env -i wget
       # - run: nix-build
       - run: nix-shell --command "cabal update; cabal test --enable-tests --test-show-details=streaming; exit"
+      - store_test_results:
+          path: ./test-reports/**/*.xml
